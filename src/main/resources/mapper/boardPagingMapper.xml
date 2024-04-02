@@ -3,6 +3,7 @@
 <mapper namespace="com.board.mapper.BoardPagingMapper">  
   
     <!-- 파라미터 전달법 : arg0, param1, HashMap, Vo -->
+    <!-- 파라미터가 Vo 가 아니고 일반변수 일때는 arg0, param1 사용한다 -->
     <!-- arg0 : menu_id, arg1 : title,    arg2 : writer --> 
     <!-- arg3 : offset,  arg4 : pageSize                --> 
     <select   id="getBoardPagingList" resultType="com.board.domain.BoardPagingVo" >
@@ -48,6 +49,11 @@
 		  </if>
 		  </where>
 	</select>
+    
+    <insert id="insertBoard">
+    INSERT INTO BOARD
+      VALUES ((SELECT NVL(MAX(BNO))))
+    </insert>
     
 </mapper>
 

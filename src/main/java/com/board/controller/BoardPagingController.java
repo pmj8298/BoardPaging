@@ -1,5 +1,6 @@
 package com.board.controller;
 
+import java.text.MessageFormat;
 import java.util.Collections;
 import java.util.List;
 
@@ -49,9 +50,11 @@ public class BoardPagingController {
         if (count < 1) {
         	response =  new PagingResponse<>(Collections.emptyList(), null);
         }
-
+        
+        // 페이징을 위한 초기설정값
         SearchVo    searchVo   =  new SearchVo();
         searchVo.setPage(nowpage);
+        searchVo.setPageSize(20); // 기본값이 10개인디 20개로 바꿈
         
         // Pagination 객체를 생성해서 페이지 정보 계산 후 SearchDto 타입의 객체인 params에 계산된 페이지 정보 저장
         Pagination pagination = new Pagination(count, searchVo);
@@ -71,26 +74,46 @@ public class BoardPagingController {
 		System.out.println( response );
 				
 		ModelAndView  mv         =  new ModelAndView();
-		mv.addObject("menu_id",    menu_id ); // pagingmenus.jsp
-		mv.addObject("nowpage",    nowpage ); // pagingmenus.jsp
+		mv.addObject("menu_id",    menu_id );  // pagingmenus.jsp
+		mv.addObject("nowpage",    nowpage );  // pagingmenus.jsp, list.jsp
 		
-		mv.addObject("menuList",   menuList );
-		mv.addObject("response",   response );
+		mv.addObject("menuList",   menuList ); // list.jsp
+		mv.addObject("response",   response ); // list.jsp
 		mv.addObject("searchVo",   searchVo );
 		mv.setViewName("boardpaging/list");
 		return   mv;
 		
 	}
 	
-	//  /Board/WriteForm
+	//  /BoardPaging/WriteForm?menu_id=${menu_id}&nowpage=${nowpage}
 	@RequestMapping("/WriteForm")
-	public  ModelAndView   writeForm() {
+	public  ModelAndView   writeForm(String menu_id, int nowpage) {
+		
+		// 메뉴 목록 조회
+		List<MenuVo> menuList = menuMapper.getMenuList();
 		
 		ModelAndView  mv  = new ModelAndView();
+		mv.addObject("menu_id", menu_id);
+		mv.addObject("nowpage", nowpage);
+		mv.addObject("menuList", menuList);
 		mv.setViewName("board/write");
 		return mv;	
 		
 	}
 	
+	//  /BoardPaging/Write
+	@RequestMapping("/Write")
+	public  ModelAndView   write(int nowpage, BoardVo boardVo) {
+		
+		boardPagingMapper.insertBoard(boardVo);
+		
+		ModelAndView  mv  = new ModelAndView();
+		
+		String fmt = "redirect:/BoardPaging/List?menu_id={0}&nowpage={1}";
+		String loc = MessageFormat.format(fmt, boardVo.getMenu_id(), nowpage );
+		mv.setViewName(loc);
+		return mv;	
+		
+	}
 	
 }

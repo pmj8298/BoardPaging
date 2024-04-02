@@ -36,10 +36,10 @@
 <body>
   <main>
     
-    <%@include file="/WEB-INF/include/menus.jsp" %>
+    <%@include file="/WEB-INF/include/pagingmenus.jsp" %>
   
 	<h2>게시글 등록</h2>
-	<form action="/Board/Write" method="POST">
+	<form action="/BoardPaging/Write" method="POST">
 	<table>
 	 <tr>
 	   <td>제목</td>

@@ -5,12 +5,12 @@
   <c:set  var="menu_id"            value="${ menu_id           }" /> 
   <c:set  var="startnum"           value="${ searchVo.pagination.startPage         }" /> 
   <c:set  var="endnum"             value="${ searchVo.pagination.endPage           }" /> 
-  <c:set  var="totalpagecount"     value="${ searchVo.pagination.totalRecordCount  }" /> 
-  /BoardPaging/List?nowpage=1&menu_id=MENU01
-  <div>
-    <table width="500" height="25"  align="center"  >
+  <c:set  var="totalpagecount"     value="${ searchVo.pagination.totalPageCount  }" /> 
+  
+  <div id="paging" style="margin: 20px 0px; border: 0px solid black;">
+    <table style="width:800px; height:25px; text-align:center"  >
      <tr>
-       <td width="500" height="25"  align="center" >
+       <td style="width:800px; height:25px; text-align:center" >
      
      <!-- 처음/ 이전 -->     
      <c:if test="${ startnum gt 1 }">

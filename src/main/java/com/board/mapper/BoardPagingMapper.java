@@ -19,5 +19,7 @@ public interface BoardPagingMapper {
 	List<BoardPagingVo> getBoardPagingList(
 			String menu_id, String title, String writer, int offset, int pageSize);
 
+	void insertBoard(BoardVo boardVo);
+
 
 }

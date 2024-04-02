@@ -62,7 +62,7 @@
 	    </tr>
 	    <tr>
 	      <td colspan="5">
-	        [<a href="/Board/WriteForm?menu_id=${menu_id}&nowpage=${nowpage}">새 글 추가</a>]
+	        [<a href="/BoardPaging/WriteForm?menu_id=${menu_id}&nowpage=${nowpage}">새 글 추가</a>]
 	      </td>
 	    </tr>
 	    
@@ -70,7 +70,7 @@
 	    <tr>
 	      <td>${ boardVo.bno   }</td>
 	      <td>
-	       <a href="/Board/View?bno=${ boardVo.bno }">
+	       <a href="/BoardPaging/View?bno=${ boardVo.bno }">
 	          ${ boardVo.title       }
 	       </a>
 	      </td>	      	      
