@@ -71,8 +71,9 @@ public class BoardPagingController {
 		System.out.println( response );
 				
 		ModelAndView  mv         =  new ModelAndView();
-		mv.addObject("menu_id",    menu_id );
-		mv.addObject("nowpage",  nowpage );
+		mv.addObject("menu_id",    menu_id ); // pagingmenus.jsp
+		mv.addObject("nowpage",    nowpage ); // pagingmenus.jsp
+		
 		mv.addObject("menuList",   menuList );
 		mv.addObject("response",   response );
 		mv.addObject("searchVo",   searchVo );
