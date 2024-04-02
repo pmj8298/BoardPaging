@@ -1,0 +1,40 @@
+
+   페이지당     10개      : pagecount
+   현재 페이지  1         : nowpage
+
+   전체 자료수  231개     : totalcount - db 조회 
+   총페이지 수  24 페이지 : 
+      totalpage   =  Math.ceil( (double)totalcount / (double) pagecount )    
+
+   보여줄 자료의 시작번호 : startnum =  (nowpage-1) * pagecount) + 1 
+   보여줄 자료의 끝번호   : endnum   =  nowpage * pagecount
+
+     startnum                                endnum      nowpage 
+       1      2  3   4   5   6   7   8   9    10            1
+      11     12 13  14  15  16  17  18  19    20            2                         
+      21       
+
+   =======================================================================
+
+    paging.jsp
+
+      
+        startnum                                   endnum     
+            1      2   3   4     5   6   7   8   9    10   ▶ ⏭   
+   ⏮ ◀   11     12   13  14    15  16  17  18  19    20   ▶ ⏭     
+   ⏮ ◀   21     22   23  [24]  25  26 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
